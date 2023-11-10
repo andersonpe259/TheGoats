@@ -42,13 +42,20 @@ class Preinformations{
                 "paragrafo1" => "Usain Bolt, nascido na Jamaica em 1986, é uma das maiores lendas do atletismo. Ele é amplamente considerado o homem mais rápido do mundo e conquistou inúmeros títulos e recordes mundiais nas corridas de velocidade.",
                 "paragrafo2" => "Bolt é conhecido por sua personalidade carismática e por sua capacidade de se destacar nas Olimpíadas e Campeonatos Mundiais. Sua velocidade incrível o tornou uma figura icônica no mundo do esporte.",
                 "premios" => "
-                                <h2>Prêmios</h2>
-                                <ul>
-                                    <li>Oito vezes campeão olímpico</li>
-                                    <li>Onze vezes campeão mundial</li>
-                                    <li>Recordista mundial dos 100m e 200m</li>
-                                    <li>Primeiro atleta a completar a 'tríplice coroa' olímpica nas provas de velocidade</li>
-                                </ul>
+                            <h2>Prêmios</h2>
+                            <ul>
+                                <li>Onze medalhas olímpicas, sendo oito de ouro</li>
+                                <li>Recordista mundial nos 100 metros rasos e 200 metros rasos</li>
+                                <li>Ouro olímpico em três Jogos Olímpicos consecutivos</li>
+                                <li>Eleito Atleta do Ano pela IAAF em seis ocasiões</li>
+                            </ul>
+                            <h2>Recordes</h2>
+                            <ul>
+                                <li>Homem mais rápido do mundo, detendo os recordes dos 100 metros e 200 metros</li>
+                                <li>Único atleta a vencer o 'triple-triple' nos Jogos Olímpicos (ouro nos 100m, 200m e revezamento 4x100m em três Olimpíadas consecutivas)</li>
+                                <li>Maior número de medalhas de ouro nos 100 metros em Jogos Olímpicos</li>
+                                <li>Maior número de medalhas de ouro nos 200 metros em Jogos Olímpicos</li>
+                            </ul>
                             "
             ],
             2 => [
@@ -58,13 +65,20 @@ class Preinformations{
                     "paragrafo1" => "Carl Lewis, nascido nos Estados Unidos em 1961, é uma das maiores lendas do atletismo. Ele é amplamente considerado um dos maiores saltadores em distância e corredores de velocidade de todos os tempos.",
                     "paragrafo2" => "Lewis conquistou inúmeros títulos e recordes mundiais em sua carreira e é conhecido por sua versatilidade no atletismo, competindo em diversas disciplinas. Sua contribuição para o esporte é inegável.",
                     "premios" => "
-                                        <h2>Prêmios</h2>
-                                        <ul>
-                                            <li>Nove vezes campeão olímpico</li>
-                                            <li>Dez vezes campeão mundial</li>
-                                            <li>Recordista mundial no salto em distância</li>
-                                            <li>Conquistou o 'quadruplo' ouro (100m, 200m, salto em distância, revezamento 4x100m) nos Jogos Olímpicos de Los Angeles em 1984</li>
-                                        </ul>
+                                    <h2>Prêmios</h2>
+                                    <ul>
+                                        <li>Nove medalhas olímpicas, incluindo quatro de ouro</li>
+                                        <li>Recordista mundial nos 100 metros rasos</li>
+                                        <li>Ouro olímpico no salto em distância em quatro Olimpíadas consecutivas</li>
+                                        <li>Eleito Atleta do Ano pela IAAF em 1982, 1983 e 1984</li>
+                                    </ul>
+                                    <h2>Recordes</h2>
+                                    <ul>
+                                        <li>Maior número de medalhas de ouro no salto em distância em Jogos Olímpicos</li>
+                                        <li>Primeiro homem a quebrar a barreira dos 9 segundos nos 100 metros rasos em uma Olimpíada</li>
+                                        <li>Recordista mundial no revezamento 4x100 metros</li>
+                                        <li>Maior número de vitórias consecutivas em grandes competições no salto em distância</li>
+                                    </ul>
                                     "
                 ],
         ],

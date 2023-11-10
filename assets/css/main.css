@@ -35,6 +35,9 @@
 .carousel-item h5 a {
   color: white;
 }
+.avaliacao{
+  height: 100vh;
+}
 h2 span{
   color: var(--color-secondary);
 }
