@@ -4,13 +4,8 @@ class Conection {
     private $conect;
 
     public function __construct() {
-        $this->conect = new PDO("sqlite:database/database.sqlite");
-        $this->conect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        if (!file_exists("database/database.sqlite")) {
-            touch("database/database.sqlite");
-            try{
-                $this->conect->exec(
+            $this->conect = new SQLite3("database/database.sqlite");
+            $this->conect->query(
                 "CREATE TABLE tb_avaliacao (
                     ava_id INTEGER PRIMARY KEY AUTOINCREMENT,
                     ava_pergunta1 INTEGER NOT NULL,
@@ -18,40 +13,9 @@ class Conection {
                     ava_pergunta3 INTEGER NOT NULL,
                     ava_pergunta4 INTEGER NOT NULL,
                     ava_pergunta5 INTEGER NOT NULL,
-                    ava_observacao VARCHAR(500)
+                    ava_observacao TEXT
                 )"
             );
-            }catch (PDOException $e) {
-                echo "Erro no banco: ".$e;
-            }
-            
-        }
-
-        // try {
-        //     $dados = $this->conect->query("SELECT name FROM sqlite_master WHERE type='table' AND name='$this->table'");
-        //     echo "Primeiro Try";
-        //     // Se não houver exceção, a tabela já foi criada
-        // } catch (PDOException $e) {
-        //     echo "Segundo Try";
-        //     if ($e->getCode() === 'HY000') {
-        //         $this->conect->exec(
-        //             "CREATE TABLE $this->table (
-        //                 ava_id INTEGER PRIMARY KEY AUTOINCREMENT,
-        //                 ava_pergunta1 INTEGER NOT NULL,
-        //                 ava_pergunta2 INTEGER NOT NULL,
-        //                 ava_pergunta3 INTEGER NOT NULL,
-        //                 ava_pergunta4 INTEGER NOT NULL,
-        //                 ava_pergunta5 INTEGER NOT NULL,
-        //                 ava_observacao VARCHAR(500)
-        //             )"
-        //         );
-        //         echo "Segundo Try";
-
-        //     } else {
-        //         // Trate outras exceções aqui
-        //         echo "Erro no banco: " . $e->getMessage();
-        //     }
-        // }
     }
 
     public function save($respostas) {
@@ -63,7 +27,7 @@ class Conection {
         $observacao = $respostas['observacao'];
 
         try {
-            $stmt = $this->conect->prepare(
+            $this->conect->query(
                 "INSERT INTO tb_avaliacao (
                     ava_pergunta1,
                     ava_pergunta2,
@@ -71,34 +35,99 @@ class Conection {
                     ava_pergunta4,
                     ava_pergunta5,
                     ava_observacao)
-                VALUES (?, ?, ?, ?, ?, ?)"
+                VALUES ($p1, $p2, $p3, $p4, $p5, '$observacao')"
             );
+            header('Location: avaliacao.php');
+            return;
+        } catch (Exception $e) {
+            echo "Erro ao Salvar Dados: " . $e;
+        }
+    }
+    public function login($usuario, $senha){
+        $user = "admin22";
+        $password = "thegoats2023";
 
-            $stmt->bindParam(1, $p1, PDO::PARAM_INT);
-            $stmt->bindParam(2, $p2, PDO::PARAM_INT);
-            $stmt->bindParam(3, $p3, PDO::PARAM_INT);
-            $stmt->bindParam(4, $p4, PDO::PARAM_INT);
-            $stmt->bindParam(5, $p5, PDO::PARAM_INT);
-            $stmt->bindParam(6, $observacao, PDO::PARAM_STR);
-
-            $stmt->execute();
-
-            echo "<h1>Dados salvos</h1>";
-        } catch (PDOException $e) {
-            echo "Erro ao Salvar Dados: " . $e->getMessage();
+        if($usuario == $user and $senha == $password){
+            header('Location: resultado.php');
+            return;
+        }
+        else{
+            return;
         }
     }
 
     public function select(){
+        $valores = array(
+            "TotalParticipantes" => 0,
+            "p1" => [
+                "q1" => 0,
+                "q2" => 0,
+                "q3" => 0,
+                "q4" => 0,
+                "q5" => 0
+            ],
+            "p2" => [
+                "q1" => 0,
+                "q2" => 0,
+                "q3" => 0,
+                "q4" => 0,
+                "q5" => 0
+            ],
+            "p3" => [
+                "q1" => 0,
+                "q2" => 0,
+                "q3" => 0,
+                "q4" => 0,
+                "q5" => 0
+            ],
+            "p4" => [
+                "q1" => 0,
+                "q2" => 0,
+                "q3" => 0,
+                "q4" => 0,
+                "q5" => 0
+            ],
+            "p5" => [
+                "q1" => 0,
+                "q2" => 0,
+                "q3" => 0,
+                "q4" => 0,
+                "q5" => 0,
+                "q6" => 0,
+                "q7" => 0,
+                "q8" => 0,
+                "q9" => 0,
+                "q10" => 0
+            ]
+        );
         try{
-            $consulta = $this->conect->query("SELECT * FROM sua_tabela");
-            $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
+            $consulta = $this->conect->query(
+                "SELECT ava_pergunta1, ava_pergunta2, ava_pergunta3, ava_pergunta4, ava_pergunta5
+                FROM tb_avaliacao");
+           
 
-            foreach ($resultados as $linha) {
-                print_r($linha);
+            while ($row = $consulta->fetchArray(SQLITE3_ASSOC)) {
+                $valores["TotalParticipantes"]++;
+                $valores["p1"]["q" . $row['ava_pergunta1']]++;
+                $valores["p2"]["q" . $row['ava_pergunta2']]++;
+                $valores["p3"]["q" . $row['ava_pergunta3']]++;
+                $valores["p4"]["q" . $row['ava_pergunta4']]++;
+                $valores["p5"]["q" . $row['ava_pergunta5']]++;
             }
-        } catch (PDOException $e) {
-            echo "Erro na consulta: " . $e->getMessage();
+
+            foreach ($valores as $pergunta => &$respostas) {
+                foreach ($respostas as $opcao => &$quantidade) {
+                    $quantidade = number_format(($quantidade / $valores["TotalParticipantes"]) * 100, 2);
+                    $valores[$pergunta][$opcao] = $quantidade;
+                }
+                
+                
+            }
+        } catch (Exception $e) {
+            echo "Erro na consulta: " . $e;
         }
+
+        return $valores;
+
     }
 }

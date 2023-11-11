@@ -9,7 +9,7 @@ include("pattern/header.html");
                 <button type="button" class="btn btn-warning btn-lg btn-block">Nova Avaliação</button>
             </a>
 
-            <a href="">
+            <a href="admin.php">
             <button type="button" class="btn btn-secondary btn-lg btn-block">Resultados(Somente Admins)</button>
             </a>
             

@@ -38,6 +38,16 @@
 .avaliacao{
   height: 100vh;
 }
+.formulario{
+  color: white;
+}
+#observacao{
+  width: 80vw;
+  height: 20vh;
+}
+.formulario label {
+  display: block;
+}
 h2 span{
   color: var(--color-secondary);
 }
