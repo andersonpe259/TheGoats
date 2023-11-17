@@ -26,7 +26,7 @@ class Preinformations{
                 </div>
 
                 <div class='d-none d-sm-block imagem2'>
-                    <img src='../assets/img/athletes/#imagem#' class='img-fluid rounded-4' alt=''>
+                    <img src='assets/img/athletes/#imagem#' class='img-fluid rounded-4' alt=''>
                 </div>
             </div>
         </div>
