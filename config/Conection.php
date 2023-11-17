@@ -4,18 +4,28 @@ class Conection {
     private $conect;
 
     public function __construct() {
-            $this->conect = new SQLite3("database/database.sqlite");
-            $this->conect->query(
-                "CREATE TABLE tb_avaliacao (
-                    ava_id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    ava_pergunta1 INTEGER NOT NULL,
-                    ava_pergunta2 INTEGER NOT NULL,
-                    ava_pergunta3 INTEGER NOT NULL,
-                    ava_pergunta4 INTEGER NOT NULL,
-                    ava_pergunta5 INTEGER NOT NULL,
-                    ava_observacao TEXT
-                )"
-            );
+           $this->conect = new SQLite3("database/database.sqlite");
+            $existe = $this->conect->query("SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='tb_avaliacao';");
+
+            $ifexiste = 0;
+
+            while($row = $existe->fetchArray(SQLITE3_ASSOC)){
+                $ifexiste = $row["COUNT(*)"];
+            }
+
+             if($row != 0){
+                $this->conect->query(
+                    "CREATE TABLE tb_avaliacao (
+                        ava_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        ava_pergunta1 INTEGER NOT NULL,
+                        ava_pergunta2 INTEGER NOT NULL,
+                        ava_pergunta3 INTEGER NOT NULL,
+                        ava_pergunta4 INTEGER NOT NULL,
+                        ava_pergunta5 INTEGER NOT NULL,
+                        ava_observacao TEXT
+                    )"
+                );
+             }
     }
 
     public function save($respostas) {
