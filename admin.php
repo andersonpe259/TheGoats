@@ -29,7 +29,7 @@ include ("pattern/header.html");
             
 
             <!-- Submit button -->
-            <input type="submit" class="btn btn-warning btn-sm" value="Enviar Respostas">
+            <input type="submit" class="btn btn-warning btn-sm" value="Acessar">
 
             <!-- Register buttons -->
             </form>
