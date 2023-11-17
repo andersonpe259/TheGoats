@@ -4,7 +4,7 @@
   <section id="hero" class="hero">
     <div class="container position-relative">
       <div class="row gy-5" data-aos="fade-in">
-        <div class="d-flex justify-content-center justify-content-lg-start mx-auto">
+        <div class="d-flex justify-content-center mx-auto">
 
         <div class="row-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center text-center text-lg-start">
           <h2>O que é um <span>Goat</span></h2>
